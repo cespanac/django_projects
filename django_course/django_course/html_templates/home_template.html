@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Home</title>
+    </head>
+    <body>
+        {% include 'upper/menu_bar.html' %}
+        <h1 style="color: green">
+            My first django project.
+        </h1>
+
+        {# Separate logical (flow control, don't abuse) & design #}
+        {% comment %} Also we can write
+            different lines.
+        {% endcomment %}
+
+        {% if first_name == 'Cristian' %}
+            <p>Condition is working.</p>
+
+        {% else %}
+            <p>Condition is not working.</p>
+        {% endif %}
+
+        <p>This is a test for my portfolio. My name is {{first_name}} {{last_name}}.</p>
+        <p>The current date is {{date.day}} / {{date.month}}.</p>
+        <p><strong>Tag list:</strong></p>
+        <ul>
+            {% if tasks %}
+                {% for name_task in tasks %}
+
+                <li>{{name_task}}</li>
+
+                {% endfor %}
+            {% else %}
+                <p>No hay nada que mostrar</p>
+            {% endif %}
+        </ul>
+
+    <p><strong>Tag list filtered by first letter & lower:</strong></p>
+        <ul>
+            {% if tasks %}
+                {% for name_task in tasks %}
+
+                <li>{{name_task|first|lower}}</li>
+                {# See more on django > template filters > built in template and tags filters. #}
+
+                {% endfor %}
+            {% else %}
+                <p>No hay nada que mostrar</p>
+            {% endif %}
+        </ul>
+
+    </body>
+</html>
